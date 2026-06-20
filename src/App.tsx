@@ -20,7 +20,7 @@ function App() {
       title: "Герой нашего времени",
       author: "Михаил Лермонтов",
       year: 1840,
-      status: "В планах",
+      status: "Читаю",
       image: "https://placehold.co/120x180?text=Book",
     }
   ]
@@ -65,6 +65,7 @@ function App() {
                       <h3 className="book-name">{book.title}</h3>
                       <p className="book-description">{book.author}</p>
                       <p className="book-description book-year">{book.year}</p>
+                      <p className="book-description">{book.status}</p>
                     </div>
                   </div>
 
