@@ -1,7 +1,10 @@
 import './App.css'
+import { useState } from 'react'
+import BookCard from './components/BookCard'
+import AddBookForm from './components/AddBookForm'
 
 function App() {
-  const books = [
+  const [books, setBooks] = useState([
     {
       title: "Мастер и Маргарита",
       author: "Михаил Булгаков",
@@ -23,7 +26,40 @@ function App() {
       status: "Читаю",
       image: "https://placehold.co/120x180?text=Book",
     }
+  ])
+
+  const statuses = [
+    "В планах",
+    "Читаю",
+    "Прочитано",
   ]
+
+  const changeStatus = (title, newStatus) => {
+    const updatedBooks = books.map((book) => {
+      if (book.title === title) {
+        return {
+          ...book,
+          status: newStatus,
+        }
+      }
+
+      return book
+    })
+
+    setBooks(updatedBooks)
+  }
+
+  const addBook = (book) => {
+    setBooks((prevBooks) => [...prevBooks, book])
+  }
+
+  const removeBook = (title) => {
+    const updatedBooks = books.filter(book => {
+      return book.title !== title
+    })
+
+    setBooks(updatedBooks)
+  }
 
   return (
     <>
@@ -39,40 +75,28 @@ function App() {
           <form className="search-form">
             <label htmlFor='book-search'>Название книги или автор</label>
             <input
-              id="book-search"
+              className='input'
               type='text'
               placeholder='Введите название книги или автора'
             />
-            <button className='find-btn' type="submit">Найти</button>
+            <button className='button' type="submit">Найти</button>
           </form>
         </section>
 
         <section className="book-section">
           <h2 className="section-title">Мои книги</h2>
 
+          <AddBookForm addBook={addBook}/>
+
           <ul className="book-list">
             {books.map((book) => (
               <li key={book.title}>
-                <article className="book-card">
-                  <div className='book-card-content'>
-                    <img
-                      className='book-img'
-                      src={book.image}
-                      alt={`Обложка книги ${book.title}`}
-                    />
-
-                    <div className="book-info">
-                      <h3 className="book-name">{book.title}</h3>
-                      <p className="book-description">{book.author}</p>
-                      <p className="book-description book-year">{book.year}</p>
-                      <p className="book-description">{book.status}</p>
-                    </div>
-                  </div>
-
-                  <button className="add-btn" type='button'>
-                    Добавить в библиотеку
-                  </button>
-                </article>
+                <BookCard
+                  book={book}
+                  statuses={statuses}
+                  changeStatus={changeStatus}
+                  removeBook={removeBook}
+                />
               </li>
             ))}
           </ul>

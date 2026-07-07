@@ -47,35 +47,52 @@ main {
   padding: 20px;
 }
 
-.search-form {
+.search-form,
+.add-book-form {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-input {
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+input,
+.form-input,
+select {
   padding: 10px 12px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   font-size: 16px;
 }
 
-input:focus {
+input:focus,
+.form-input:focus,
+select:focus {
   outline: 2px solid #111827;
   outline-offset: 2px;
 }
 
-.find-btn {
-  border: none;
+.button {
   padding: 10px 16px;
-  background-color: #111827;
-  color: white;
+  border: 1px solid #d1d5db;
   border-radius: 6px;
   cursor: pointer;
+  background-color: #f3f4f6;
+  color: #111827;
+  font-size: 16px;
 }
 
-.find-btn:hover {
-  background-color: #1f2937;
+.button:hover {
+  background-color: #e5e7eb;
+}
+
+.button:focus {
+  outline: 2px solid #111827;
+  outline-offset: 2px;
 }
 
 .book-list {
@@ -135,25 +152,6 @@ input:focus {
   font-size: 14px;
 }
 
-.add-btn {
-  padding: 10px 16px;
-  background-color: #f3f4f6;
-  color: #111827;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.add-btn:hover {
-  background-color: #e5e7eb;
-}
-
-.add-btn:focus,
-.find-btn:focus {
-  outline: 2px solid #111827;
-  outline-offset: 2px;
-}
-
 footer {
   border-top: 1px solid #d1d5db;
   padding: 16px 24px;
@@ -164,6 +162,8 @@ footer {
 .footer-info {
   margin: 0;
 }
+
+
 
 @media (max-width: 600px) {
   main {
