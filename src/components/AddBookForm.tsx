@@ -1,12 +1,27 @@
 import { useState } from 'react'
 
-function AddBookForm(props) {
+function AddBookForm({ addBook }) {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [year, setYear] = useState("")
 
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+        addBook({
+            title,
+            author,
+            year: Number(year),
+            status: "В планах",
+            image: "https://placehold.co/120x180?text=Book",
+        })
+    }
+
     return (
-        <form className="add-book-form">
+        <form 
+            className="add-book-form"
+            onSubmit={handleSubmit}
+        >
             <h2>Добавить книгу</h2>
 
             <label className="form-field">
@@ -14,14 +29,14 @@ function AddBookForm(props) {
                 <input
                     className="input"
                     type="text"
-                    value={title} 
+                    value={title}
                     onChange={(event) => setTitle(event.target.value)}
                 />
             </label>
 
             <label className="form-field">
                 Имя автора
-                <input 
+                <input
                     className="input"
                     type="text"
                     value={author}
@@ -31,7 +46,7 @@ function AddBookForm(props) {
 
             <label className="form-field">
                 Год издания
-                <input 
+                <input
                     className="input"
                     type="number"
                     value={year}
@@ -41,16 +56,7 @@ function AddBookForm(props) {
 
             <button
                 className="button"
-                type="button"
-                onClick={() => {
-                    props.addBook({
-                        title: title,
-                        author: author,
-                        year: Number(year),
-                        status: "В планах",
-                        image: "https://placehold.co/120x180?text=Book",
-                    })
-                }}
+                type="submit"
             >
                 Добавить книгу
             </button>

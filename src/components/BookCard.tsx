@@ -1,27 +1,32 @@
-function BookCard(props) {
+function BookCard({
+    book,
+    statuses,
+    changeStatus,
+    removeBook
+}) {
     return (
         <article className="book-card">
             <div className='book-card-content'>
                 <img
                     className='book-img'
-                    src={props.book.image}
-                    alt={`Обложка книги ${props.book.title}`}
+                    src={book.image}
+                    alt={`Обложка книги ${book.title}`}
                 />
 
                 <div className="book-info">
-                    <h3 className="book-name">{props.book.title}</h3>
-                    <p className="book-description">{props.book.author}</p>
-                    <p className="book-description book-year">{props.book.year}</p>
-                    <p className="book-description">{props.book.status}</p>
+                    <h3 className="book-name">{book.title}</h3>
+                    <p className="book-description">{book.author}</p>
+                    <p className="book-description book-year">{book.year}</p>
+                    <p className="book-description">{book.status}</p>
                 </div>
 
                 <select
-                    value={props.book.status}
+                    value={book.status}
                     onChange={(event) =>
-                        props.changeStatus(props.book.title, event.target.value)
+                        changeStatus(book.title, event.target.value)
                     }
                 >
-                    {props.statuses.map((status) => (
+                    {statuses.map((status) => (
                         <option key={status} value={status}>{status}</option>
                     ))}
                 </select>
@@ -30,7 +35,7 @@ function BookCard(props) {
             <button
                 className='button'
                 type='button'
-                onClick={() => props.removeBook(props.book.title)}>
+                onClick={() => removeBook(book.title)}>
                 Удалить
             </button>
         </article>
