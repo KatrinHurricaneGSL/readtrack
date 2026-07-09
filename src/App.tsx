@@ -1,52 +1,31 @@
 import './App.css'
 import { useState } from 'react'
-import BookCard from './components/BookCard'
 import AddBookForm from './components/AddBookForm'
+import BookList from './components/BookList'
+import { initialBooks } from './data/books'
+
+const statuses = [
+  "В планах",
+  "Читаю",
+  "Прочитано",
+]
 
 function App() {
-  const [books, setBooks] = useState([
-    {
-      title: "Мастер и Маргарита",
-      author: "Михаил Булгаков",
-      year: 1967,
-      status: "В планах",
-      image: "https://placehold.co/120x180?text=Book",
-    },
-    {
-      title: "Преступление и наказание",
-      author: "Фёдор Достоевский",
-      year: 1866,
-      status: "Прочитано",
-      image: "https://placehold.co/120x180?text=Book",
-    },
-    {
-      title: "Герой нашего времени",
-      author: "Михаил Лермонтов",
-      year: 1840,
-      status: "Читаю",
-      image: "https://placehold.co/120x180?text=Book",
-    }
-  ])
-
-  const statuses = [
-    "В планах",
-    "Читаю",
-    "Прочитано",
-  ]
+  const [books, setBooks] = useState(initialBooks)
 
   const changeStatus = (title, newStatus) => {
-    const updatedBooks = books.map((book) => {
-      if (book.title === title) {
-        return {
-          ...book,
-          status: newStatus,
+    setBooks((prevBooks) =>
+      prevBooks.map((book) => {
+        if (book.title === title) {
+          return {
+            ...book,
+            status: newStatus,
+          }
         }
-      }
 
-      return book
-    })
-
-    setBooks(updatedBooks)
+        return book
+      })
+    )
   }
 
   const addBook = (book) => {
@@ -54,11 +33,9 @@ function App() {
   }
 
   const removeBook = (title) => {
-    const updatedBooks = books.filter(book => {
-      return book.title !== title
-    })
-
-    setBooks(updatedBooks)
+    setBooks((prevBooks) =>
+      prevBooks.filter((book) => book.title !== title)
+    )
   }
 
   return (
@@ -86,20 +63,14 @@ function App() {
         <section className="book-section">
           <h2 className="section-title">Мои книги</h2>
 
-          <AddBookForm addBook={addBook}/>
+          <AddBookForm addBook={addBook} />
 
-          <ul className="book-list">
-            {books.map((book) => (
-              <li key={book.title}>
-                <BookCard
-                  book={book}
-                  statuses={statuses}
-                  changeStatus={changeStatus}
-                  removeBook={removeBook}
-                />
-              </li>
-            ))}
-          </ul>
+          <BookList
+            books={books}
+            statuses={statuses}
+            changeStatus={changeStatus}
+            removeBook={removeBook}
+          />
         </section>
       </main>
       <footer>

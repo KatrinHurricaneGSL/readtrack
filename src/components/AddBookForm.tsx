@@ -15,6 +15,10 @@ function AddBookForm({ addBook }) {
             status: "В планах",
             image: "https://placehold.co/120x180?text=Book",
         })
+
+        setTitle("")
+        setAuthor("")
+        setYear("")
     }
 
     return (
