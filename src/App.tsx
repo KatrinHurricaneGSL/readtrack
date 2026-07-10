@@ -13,6 +13,7 @@ const statuses = [
 function App() {
   const [books, setBooks] = useState(initialBooks)
   const [searchQuery, setSearchQuery] = useState("")
+  const [sortOrder, setSortOrder] = useState("default")
 
   const changeStatus = (title, newStatus) => {
     setBooks((prevBooks) =>
@@ -43,11 +44,14 @@ function App() {
     return book.title.toLowerCase().includes(searchQuery.toLowerCase()) || book.author.toLowerCase().includes(searchQuery.toLowerCase())
   })
 
-  const handleSearchSubmit = (event) => {
-    event.preventDefault()
-  }
-
-  console.log(searchQuery)
+  const visibleBooks = sortOrder === "default" ? filteredBooks
+    : [...filteredBooks].sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a.year - b.year
+      }
+      
+      return b.year - a.year
+    })
 
   return (
     <>
@@ -60,9 +64,8 @@ function App() {
         <section className="search-section">
           <h2 className="section-title">Поиск книг</h2>
 
-          <form 
+          <form
             className="search-form"
-            onSubmit={handleSearchSubmit}
           >
             <label htmlFor='book-search'>Название книги или автор</label>
             <input
@@ -80,8 +83,17 @@ function App() {
 
           <AddBookForm addBook={addBook} />
 
+          <select
+            value={sortOrder}
+            onChange={(event) => setSortOrder(event.target.value)}
+          >
+            <option value="default">Без сортировки</option>
+            <option value="asc">Сначала старые</option>
+            <option value="desc">Сначала новые</option>
+          </select>
+
           <BookList
-            books={filteredBooks}
+            books={visibleBooks}
             statuses={statuses}
             changeStatus={changeStatus}
             removeBook={removeBook}
