@@ -12,6 +12,7 @@ const statuses = [
 
 function App() {
   const [books, setBooks] = useState(initialBooks)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const changeStatus = (title, newStatus) => {
     setBooks((prevBooks) =>
@@ -38,6 +39,16 @@ function App() {
     )
   }
 
+  const filteredBooks = books.filter((book) => {
+    return book.title.toLowerCase().includes(searchQuery.toLowerCase()) || book.author.toLowerCase().includes(searchQuery.toLowerCase())
+  })
+
+  const handleSearchSubmit = (event) => {
+    event.preventDefault()
+  }
+
+  console.log(searchQuery)
+
   return (
     <>
       <header>
@@ -49,14 +60,18 @@ function App() {
         <section className="search-section">
           <h2 className="section-title">Поиск книг</h2>
 
-          <form className="search-form">
+          <form 
+            className="search-form"
+            onSubmit={handleSearchSubmit}
+          >
             <label htmlFor='book-search'>Название книги или автор</label>
             <input
               className='input'
               type='text'
               placeholder='Введите название книги или автора'
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
             />
-            <button className='button' type="submit">Найти</button>
           </form>
         </section>
 
@@ -66,7 +81,7 @@ function App() {
           <AddBookForm addBook={addBook} />
 
           <BookList
-            books={books}
+            books={filteredBooks}
             statuses={statuses}
             changeStatus={changeStatus}
             removeBook={removeBook}
