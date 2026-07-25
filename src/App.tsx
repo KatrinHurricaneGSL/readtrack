@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AddBookForm from './components/AddBookForm'
 import BookList from './components/BookList'
 import { initialBooks } from './data/books'
@@ -12,12 +12,28 @@ const statuses: BookStatus[] = [
 ]
 
 function App() {
-  const [books, setBooks] = useState<Book[]>(initialBooks)
+  const [books, setBooks] = useState<Book[]>(() => {
+    const savedBooks = localStorage.getItem("books")
+
+    if(savedBooks) {
+      return JSON.parse(savedBooks)
+    }
+
+    return initialBooks
+  })
   const [searchQuery, setSearchQuery] = useState("")
   const [sortOrder, setSortOrder] = useState<SortOrder>("default")
 
+  useEffect(() => {
+    localStorage.setItem(
+      "books",
+      JSON.stringify(books)
+    )
+  }, [books])
+
+
   const changeStatus = (
-    id: string, 
+    id: string,
     newStatus: BookStatus
   ): void => {
     setBooks((prevBooks) =>
@@ -53,7 +69,7 @@ function App() {
       if (sortOrder === "asc") {
         return a.year - b.year
       }
-      
+
       return b.year - a.year
     })
 
