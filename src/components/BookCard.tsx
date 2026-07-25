@@ -32,7 +32,7 @@ function BookCard({
                 <select
                     value={book.status}
                     onChange={(event) =>
-                        changeStatus(book.id, event.target.value)
+                        changeStatus(book.id, event.target.value as BookStatus)
                     }
                 >
                     {statuses.map((status) => (
