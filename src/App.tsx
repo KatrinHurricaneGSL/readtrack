@@ -3,22 +3,26 @@ import { useState } from 'react'
 import AddBookForm from './components/AddBookForm'
 import BookList from './components/BookList'
 import { initialBooks } from './data/books'
+import type { Book, BookStatus, SortOrder } from './types/book'
 
-const statuses = [
+const statuses: BookStatus[] = [
   "В планах",
   "Читаю",
   "Прочитано",
 ]
 
 function App() {
-  const [books, setBooks] = useState(initialBooks)
+  const [books, setBooks] = useState<Book[]>(initialBooks)
   const [searchQuery, setSearchQuery] = useState("")
-  const [sortOrder, setSortOrder] = useState("default")
+  const [sortOrder, setSortOrder] = useState<SortOrder>("default")
 
-  const changeStatus = (title, newStatus) => {
+  const changeStatus = (
+    id: string, 
+    newStatus: BookStatus
+  ): void => {
     setBooks((prevBooks) =>
       prevBooks.map((book) => {
-        if (book.title === title) {
+        if (book.id === id) {
           return {
             ...book,
             status: newStatus,
@@ -30,13 +34,13 @@ function App() {
     )
   }
 
-  const addBook = (book) => {
+  const addBook = (book: Book): void => {
     setBooks((prevBooks) => [...prevBooks, book])
   }
 
-  const removeBook = (title) => {
+  const removeBook = (id: string): void => {
     setBooks((prevBooks) =>
-      prevBooks.filter((book) => book.title !== title)
+      prevBooks.filter((book) => book.id !== id)
     )
   }
 
@@ -85,7 +89,7 @@ function App() {
 
           <select
             value={sortOrder}
-            onChange={(event) => setSortOrder(event.target.value)}
+            onChange={(event) => setSortOrder(event.target.value as SortOrder)}
           >
             <option value="default">Без сортировки</option>
             <option value="asc">Сначала старые</option>

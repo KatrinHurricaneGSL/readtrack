@@ -1,9 +1,18 @@
+import type {Book, BookStatus} from "../types/book"
+
+interface BookCardProps {
+    book: Book;
+    statuses: BookStatus[];
+    changeStatus: (id: string, newStatus: BookStatus) => void;
+    removeBook: (id: string) => void;
+}
+
 function BookCard({
     book,
     statuses,
     changeStatus,
     removeBook
-}) {
+}: BookCardProps) {
     return (
         <article className="book-card">
             <div className='book-card-content'>
@@ -23,7 +32,7 @@ function BookCard({
                 <select
                     value={book.status}
                     onChange={(event) =>
-                        changeStatus(book.title, event.target.value)
+                        changeStatus(book.id, event.target.value)
                     }
                 >
                     {statuses.map((status) => (
@@ -35,7 +44,7 @@ function BookCard({
             <button
                 className='button'
                 type='button'
-                onClick={() => removeBook(book.title)}>
+                onClick={() => removeBook(book.id)}>
                 Удалить
             </button>
         </article>

@@ -1,6 +1,11 @@
 import { useState } from 'react'
+import type {Book} from "../types/book"
 
-function AddBookForm({ addBook }) {
+interface AddBookFormProps {
+    addBook: (book: Book) => void;
+}
+
+function AddBookForm({ addBook }: AddBookFormProps) {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [year, setYear] = useState("")
@@ -9,6 +14,7 @@ function AddBookForm({ addBook }) {
         event.preventDefault()
 
         addBook({
+            id: crypto.randomUUID(),
             title,
             author,
             year: Number(year),
