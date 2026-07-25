@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type {Book} from "../types/book"
+import type { Book } from "../types/book"
 
 interface AddBookFormProps {
     addBook: (book: Book) => void;
@@ -9,15 +9,35 @@ function AddBookForm({ addBook }: AddBookFormProps) {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [year, setYear] = useState("")
+    const [error, setError] = useState("")
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
+        setError("")
+
+        if (!title.trim()) {
+            setError("Введите название книги")
+            return
+        }
+
+        if (!author.trim()) {
+            setError("Введите имя автора")
+            return
+        }
+
+        const numYear = Number(year);
+
+        if (isNaN(numYear) || numYear < 1000 || numYear > 2026) {
+            setError("Введите корректный год")
+            return
+        }
+
         addBook({
             id: crypto.randomUUID(),
-            title,
-            author,
-            year: Number(year),
+            title: title.trim(),
+            author: author.trim(),
+            year: numYear,
             status: "В планах",
             image: "https://placehold.co/120x180?text=Book",
         })
@@ -28,7 +48,7 @@ function AddBookForm({ addBook }: AddBookFormProps) {
     }
 
     return (
-        <form 
+        <form
             className="add-book-form"
             onSubmit={handleSubmit}
         >
@@ -70,6 +90,12 @@ function AddBookForm({ addBook }: AddBookFormProps) {
             >
                 Добавить книгу
             </button>
+
+            {error &&
+                <p className="from-error">
+                    {error}
+                </p>
+            }
         </form>
     )
 }
