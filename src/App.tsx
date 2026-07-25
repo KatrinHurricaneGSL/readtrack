@@ -2,7 +2,7 @@ import './App.css'
 import { useState } from 'react'
 import AddBookForm from './components/AddBookForm'
 import BookList from './components/BookList'
-import type { Book, BookStatus, SortOrder } from './types/book'
+import type { Book, BookStatus, SortOrder, StatusFilter } from './types/book'
 import useBooks from "./hooks/useBooks"
 
 const statuses: BookStatus[] = [
@@ -12,12 +12,18 @@ const statuses: BookStatus[] = [
 ]
 
 function App() {
-  const {books, changeStatus, addBook, removeBook} = useBooks()
+  const { books, changeStatus, addBook, removeBook } = useBooks()
   const [searchQuery, setSearchQuery] = useState("")
   const [sortOrder, setSortOrder] = useState<SortOrder>("default")
+  const [selectedStatus, setSelectedStatus] = useState<StatusFilter>("all")
 
   const filteredBooks = books.filter((book) => {
-    return book.title.toLowerCase().includes(searchQuery.toLowerCase()) || book.author.toLowerCase().includes(searchQuery.toLowerCase())
+    const isSearchMatch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase())
+    const isStatusMatch = selectedStatus === "all" ||
+      book.status === selectedStatus
+
+    return isSearchMatch && isStatusMatch
   })
 
   const visibleBooks = sortOrder === "default" ? filteredBooks
@@ -43,11 +49,12 @@ function App() {
           <form
             className="search-form"
           >
-            <label htmlFor='book-search'>Название книги или автор</label>
+            <label htmlFor="book-search">Название книги или автор</label>
             <input
-              className='input'
-              type='text'
-              placeholder='Введите название книги или автора'
+              id="book-search"
+              className="input"
+              type="text"
+              placeholder="Введите название книги или автора"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
             />
@@ -59,7 +66,23 @@ function App() {
 
           <AddBookForm addBook={addBook} />
 
+          <label htmlFor="status-filter">Статус:</label>
           <select
+            id="status-filter"
+            value={selectedStatus}
+            onChange={(event) => setSelectedStatus(event.target.value as StatusFilter)}
+          >
+            <option value="all">Все статусы</option>
+            {statuses.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="sort-books">Сортировка:</label>
+          <select
+            id="sort-books"
             value={sortOrder}
             onChange={(event) => setSortOrder(event.target.value as SortOrder)}
           >

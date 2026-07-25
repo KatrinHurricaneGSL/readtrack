@@ -3,6 +3,8 @@ export type BookStatus =
     | "Читаю"
     | "Прочитано" 
 
+export type StatusFilter = "all" | BookStatus
+
 export type SortOrder =  
     | "default"
     | "asc"
