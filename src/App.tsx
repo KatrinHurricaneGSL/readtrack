@@ -7,6 +7,8 @@ import { BookStats } from './components/BookStats'
 import { statuses } from './data/bookStatuses'
 import useBookFilters from './hooks/useBookFilters'
 import { Button } from './components/Button'
+import { Modal } from './components/Modal'
+import { useState } from 'react'
 
 function App() {
   const { books, changeStatus, addBook, removeBook, loading } = useBooks()
@@ -20,6 +22,8 @@ function App() {
     setSelectedStatus,
     visibleBooks
   } = useBookFilters(books)
+
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -50,12 +54,12 @@ function App() {
         <section className="book-section">
           <h2 className="section-title">
             <span>Мои книги</span>
-            <Button size='small'>Добавить книгу</Button>
+            <Button size='small' onClick={() => setOpen(true)}>Добавить книгу</Button>
           </h2>
 
           <BookStats books={books} />
 
-          <AddBookForm addBook={addBook} loading={loading} />
+
 
           <label htmlFor="status-filter">Статус:</label>
           <select
@@ -96,6 +100,10 @@ function App() {
       <footer>
         <p className="footer-info">ReadTrack - трекер прочитанных книг</p>
       </footer>
+
+      <Modal title="Добавить книгу" open={open} onClose={() => setOpen(false)}>
+        <AddBookForm addBook={addBook} loading={loading} />
+      </Modal>
     </>
   )
 }

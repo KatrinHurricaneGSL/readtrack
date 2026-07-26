@@ -55,7 +55,6 @@ function AddBookForm({ addBook, loading }: AddBookFormProps) {
             className={styles.form}
             onSubmit={handleSubmit}
         >
-            <h2>Добавить книгу</h2>
 
             <label className={styles.field}>
                 Название книги
@@ -91,7 +90,7 @@ function AddBookForm({ addBook, loading }: AddBookFormProps) {
                 htmlType="submit"
                 disabled={loading}
             >
-                {loading ? "Загрузка..." : "Добавить книгу"}
+                {loading ? "Загрузка..." : "Добавить"}
             </Button>
 
             {error &&
