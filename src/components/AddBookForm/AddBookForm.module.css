@@ -17,25 +17,6 @@
   font-size: 16px;
 }
 
-.button {
-  padding: 10px 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  cursor: pointer;
-  background-color: #f3f4f6;
-  color: #111827;
-  font-size: 16px;
-}
-
-.button:hover {
-  background-color: #e5e7eb;
-}
-
-.button:focus {
-  outline: 2px solid #111827;
-  outline-offset: 2px;
-}
-
 .error {
     margin: 0;
     color: #b91c1c;

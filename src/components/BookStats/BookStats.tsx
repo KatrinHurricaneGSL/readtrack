@@ -1,6 +1,7 @@
 import type { BookStatus, Book } from "../../types/book"
 import { statuses } from "../../data/bookStatuses";
 import styles from "./BookStats.module.css"
+import { Delimeter } from "../Delimeter";
 
 interface BookStatsProps {
     books: Book[];
@@ -20,10 +21,10 @@ function BookStats({ books }: BookStatsProps) {
 
     return (
         <section className={styles.stats}>
-            <p>Всего книг: {totalBooks}</p>
+            <p>Всего книг: {totalBooks}</p> <Delimeter />
             {statuses.map(status => (
                 <p key={status}>
-                    {status}: {statusCount[status]}
+                    {status}: {statusCount[status]} <Delimeter />
                 </p>
             ))}
         </section>

@@ -31,6 +31,9 @@ main {
 }
 
 .section-title {
+  display: flex;
+  gap: 16px;
+  align-items: center;
   margin: 0 0 16px;
   font-size: 20px;
 }

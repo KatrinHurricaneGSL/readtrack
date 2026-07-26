@@ -6,6 +6,7 @@ import useBooks from "./hooks/useBooks"
 import { BookStats } from './components/BookStats'
 import { statuses } from './data/bookStatuses'
 import useBookFilters from './hooks/useBookFilters'
+import { Button } from './components/Button'
 
 function App() {
   const { books, changeStatus, addBook, removeBook, loading } = useBooks()
@@ -47,7 +48,10 @@ function App() {
         </section>
 
         <section className="book-section">
-          <h2 className="section-title">Мои книги</h2>
+          <h2 className="section-title">
+            <span>Мои книги</span>
+            <Button size='small'>Добавить книгу</Button>
+          </h2>
 
           <BookStats books={books} />
 

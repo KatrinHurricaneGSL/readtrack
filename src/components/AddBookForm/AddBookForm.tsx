@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { Book } from "../../types/book"
 import styles from "./AddBookForm.module.css"
+import { Button } from '../Button';
 
 interface AddBookFormProps {
     addBook: (book: Book) => void;
@@ -86,13 +87,12 @@ function AddBookForm({ addBook, loading }: AddBookFormProps) {
                 />
             </label>
 
-            <button
-                className={styles.button}
-                type="submit"
+            <Button
+                htmlType="submit"
                 disabled={loading}
             >
                 {loading ? "Загрузка..." : "Добавить книгу"}
-            </button>
+            </Button>
 
             {error &&
                 <p className={styles.error}>

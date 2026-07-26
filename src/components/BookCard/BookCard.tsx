@@ -1,4 +1,5 @@
 import type {Book, BookStatus} from "../../types/book"
+import { Button } from "../Button";
 import styles from "./BookCard.module.css"
 
 interface BookCardProps {
@@ -45,14 +46,14 @@ function BookCard({
                 </select>
             </div>
 
-            <button
-                className={styles.button}
-                type='button'
+            <Button
+                htmlType='button'
                 onClick={() => removeBook(book.id)}
                 disabled={loading}
+                danger
             >
                 Удалить
-            </button>
+            </Button>
         </article>
     )
 }
