@@ -1,4 +1,5 @@
-import type {Book, BookStatus} from "../types/book"
+import type {Book, BookStatus} from "../../types/book"
+import styles from "./BookCard.module.css"
 
 interface BookCardProps {
     book: Book;
@@ -14,22 +15,23 @@ function BookCard({
     removeBook
 }: BookCardProps) {
     return (
-        <article className="book-card">
-            <div className='book-card-content'>
+        <article className={styles.card}>
+            <div className={styles.content}>
                 <img
-                    className='book-img'
+                    className={styles.image}
                     src={book.image}
                     alt={`Обложка книги ${book.title}`}
                 />
 
-                <div className="book-info">
-                    <h3 className="book-name">{book.title}</h3>
-                    <p className="book-description">{book.author}</p>
-                    <p className="book-description book-year">{book.year}</p>
-                    <p className="book-description">{book.status}</p>
+                <div className={styles.info}>
+                    <h3 className={styles.title}>{book.title}</h3>
+                    <p className={styles.author}>{book.author}</p>
+                    <p className={styles.year}>{book.year}</p>
+                    <p className={styles.status}>{book.status}</p>
                 </div>
 
                 <select
+                    className={styles.select}
                     value={book.status}
                     onChange={(event) =>
                         changeStatus(book.id, event.target.value as BookStatus)
@@ -42,7 +44,7 @@ function BookCard({
             </div>
 
             <button
-                className='button'
+                className={styles.button}
                 type='button'
                 onClick={() => removeBook(book.id)}>
                 Удалить

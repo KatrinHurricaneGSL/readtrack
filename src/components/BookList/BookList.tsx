@@ -1,5 +1,6 @@
-import BookCard from './BookCard'
-import type {Book, BookStatus} from "../types/book"
+import { BookCard } from '../BookCard'
+import type {Book, BookStatus} from "../../types/book"
+import styles from "./BookList.module.css"
 
 interface BookListProps {
     books: Book[];
@@ -15,7 +16,7 @@ function BookList({
     removeBook,
 }: BookListProps) {
     return (
-        <ul className="book-list">
+        <ul className={styles.list}>
             {books.map((book) => (
                 <li key={book.id}>
                     <BookCard

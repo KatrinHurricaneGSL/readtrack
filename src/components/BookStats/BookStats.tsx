@@ -1,5 +1,6 @@
-import type { BookStatus, Book } from "../types/book"
-import { statuses } from "../data/bookStatuses";
+import type { BookStatus, Book } from "../../types/book"
+import { statuses } from "../../data/bookStatuses";
+import styles from "./BookStats.module.css"
 
 interface BookStatsProps {
     books: Book[];
@@ -18,7 +19,7 @@ function BookStats({ books }: BookStatsProps) {
     })
 
     return (
-        <section className="book-stats">
+        <section className={styles.stats}>
             <p>Всего книг: {totalBooks}</p>
             {statuses.map(status => (
                 <p key={status}>

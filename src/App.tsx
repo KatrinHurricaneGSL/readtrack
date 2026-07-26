@@ -1,9 +1,9 @@
 import './App.css'
-import AddBookForm from './components/AddBookForm'
-import BookList from './components/BookList'
+import { AddBookForm } from './components/AddBookForm'
+import { BookList } from './components/BookList'
 import type { SortOrder, StatusFilter } from './types/book'
 import useBooks from "./hooks/useBooks"
-import BookStats from './components/BookStats'
+import { BookStats } from './components/BookStats'
 import { statuses } from './data/bookStatuses'
 import useBookFilters from './hooks/useBookFilters'
 

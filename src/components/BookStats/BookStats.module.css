@@ -1,0 +1,9 @@
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.stats p {
+    margin: 0;
+}
