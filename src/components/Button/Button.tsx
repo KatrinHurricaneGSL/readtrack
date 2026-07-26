@@ -3,7 +3,7 @@ import style from "./Button.module.css"
 
 interface ButtonProps {
     htmlType?: "button" | "reset" | "submit" | undefined
-    type?: "primary" | "outline"
+    type?: "primary" | "outline" | "text"
     size?: "small" | "middle" | "large"
     danger?: boolean;
     onClick?: React.MouseEventHandler<HTMLButtonElement>

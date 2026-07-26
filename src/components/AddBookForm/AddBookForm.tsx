@@ -86,18 +86,18 @@ function AddBookForm({ addBook, loading }: AddBookFormProps) {
                 />
             </label>
 
+            {error &&
+                <p className={styles.error}>
+                    {error}
+                </p>
+            }
+
             <Button
                 htmlType="submit"
                 disabled={loading}
             >
                 {loading ? "Загрузка..." : "Добавить"}
             </Button>
-
-            {error &&
-                <p className={styles.error}>
-                    {error}
-                </p>
-            }
         </form>
     )
 }

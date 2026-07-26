@@ -21,11 +21,16 @@ function BookStats({ books }: BookStatsProps) {
 
     return (
         <section className={styles.stats}>
-            <p>Всего книг: {totalBooks}</p> <Delimeter />
+            <div className={styles.item}>
+                <span>Всего книг</span>
+                <strong>{totalBooks}</strong>
+            </div>
+
             {statuses.map(status => (
-                <p key={status}>
-                    {status}: {statusCount[status]} <Delimeter />
-                </p>
+                <div className={styles.item} key={status}>
+                    <span>{status}</span>
+                    <strong>{statusCount[status]}</strong>
+                </div>
             ))}
         </section>
     )

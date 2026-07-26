@@ -1,4 +1,4 @@
-import type {Book, BookStatus} from "../../types/book"
+import type { Book, BookStatus } from "../../types/book"
 import { Button } from "../Button";
 import styles from "./BookCard.module.css"
 
@@ -30,30 +30,33 @@ function BookCard({
                     <h3 className={styles.title}>{book.title}</h3>
                     <p className={styles.author}>{book.author}</p>
                     <p className={styles.year}>{book.year}</p>
-                    <p className={styles.status}>{book.status}</p>
                 </div>
 
-                <select
-                    className={styles.select}
-                    value={book.status}
-                    onChange={(event) =>
-                        changeStatus(book.id, event.target.value as BookStatus)
-                    }
-                >
-                    {statuses.map((status) => (
-                        <option key={status} value={status}>{status}</option>
-                    ))}
-                </select>
-            </div>
+                <div className={styles.actions}>
+                    <p className={styles.status}>{book.status}</p>
 
-            <Button
-                htmlType='button'
-                onClick={() => removeBook(book.id)}
-                disabled={loading}
-                danger
-            >
-                Удалить
-            </Button>
+                    <select
+                        className={styles.select}
+                        value={book.status}
+                        onChange={(event) =>
+                            changeStatus(book.id, event.target.value as BookStatus)
+                        }
+                    >
+                        {statuses.map((status) => (
+                            <option key={status} value={status}>{status}</option>
+                        ))}
+                    </select>
+
+                    <Button
+                        htmlType='button'
+                        onClick={() => removeBook(book.id)}
+                        disabled={loading}
+                        danger
+                    >
+                        Удалить
+                    </Button>
+                </div>
+            </div>
         </article>
     )
 }

@@ -1,15 +1,15 @@
 .button {
     padding: 10px 16px;
-    border: 1px solid #d1d5db;
+    border: 1px solid #1677ff;
     border-radius: 6px;
     cursor: pointer;
-    background-color: #f3f4f6;
-    color: #111827;
+    background-color: #1677ff;
+    color: white;
     font-size: 16px;
 }
 
 .button:hover {
-    background-color: #e5e7eb;
+    background-color: #0958d9;
 }
 
 .button:focus {
@@ -27,6 +27,29 @@
     border-color: #fbb1b1;
     background-color: #f9e1e1;
     color: #b91c1cde;
+}
+
+.outline {
+    background-color: transparent;
+    border-color: #d1d5db;
+    color: black;
+}
+
+.outline:hover {
+    background-color: transparent;
+    border-color: #c7d0dd;
+}
+
+.text {
+    background-color: transparent;
+    border: none;
+    color: black;
+}
+
+.text:hover {
+    background-color: transparent;
+    border: none;
+    color: black;
 }
 
 .small {

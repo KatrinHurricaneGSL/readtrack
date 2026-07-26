@@ -40,7 +40,7 @@ export function Modal({ open, children, title, onClose }: Props) {
             <div className={styles.body}>
                 <div className={styles.header}>
                     <div className={styles.title}>{title}</div>
-                    <Button size="small" onClick={handleCloseModal}>х</Button>
+                    <Button size="small" onClick={handleCloseModal} type="text">х</Button>
                 </div>
 
                 <div className={styles.content}>
