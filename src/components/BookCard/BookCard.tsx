@@ -4,6 +4,7 @@ import styles from "./BookCard.module.css"
 interface BookCardProps {
     book: Book;
     statuses: BookStatus[];
+    loading?: boolean;
     changeStatus: (id: string, newStatus: BookStatus) => void;
     removeBook: (id: string) => void;
 }
@@ -11,6 +12,7 @@ interface BookCardProps {
 function BookCard({
     book,
     statuses,
+    loading,
     changeStatus,
     removeBook
 }: BookCardProps) {
@@ -46,7 +48,9 @@ function BookCard({
             <button
                 className={styles.button}
                 type='button'
-                onClick={() => removeBook(book.id)}>
+                onClick={() => removeBook(book.id)}
+                disabled={loading}
+            >
                 Удалить
             </button>
         </article>

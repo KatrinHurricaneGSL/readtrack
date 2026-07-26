@@ -5,6 +5,7 @@ import styles from "./BookList.module.css"
 interface BookListProps {
     books: Book[];
     statuses: BookStatus[];
+    loading?: boolean;
     changeStatus: (id: string, newStatus: BookStatus) => void;
     removeBook: (id: string) => void;
 }
@@ -12,6 +13,7 @@ interface BookListProps {
 function BookList({ 
     books,
     statuses,
+    loading,
     changeStatus,
     removeBook,
 }: BookListProps) {
@@ -22,6 +24,7 @@ function BookList({
                     <BookCard
                         book={book}
                         statuses={statuses}
+                        loading={loading}
                         changeStatus={changeStatus}
                         removeBook={removeBook}
                     />

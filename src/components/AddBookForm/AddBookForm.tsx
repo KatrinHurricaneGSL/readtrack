@@ -4,9 +4,10 @@ import styles from "./AddBookForm.module.css"
 
 interface AddBookFormProps {
     addBook: (book: Book) => void;
+    loading?: boolean
 }
 
-function AddBookForm({ addBook }: AddBookFormProps) {
+function AddBookForm({ addBook, loading }: AddBookFormProps) {
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("")
     const [year, setYear] = useState("")
@@ -88,8 +89,9 @@ function AddBookForm({ addBook }: AddBookFormProps) {
             <button
                 className={styles.button}
                 type="submit"
+                disabled={loading}
             >
-                Добавить книгу
+                {loading ? "Загрузка..." : "Добавить книгу"}
             </button>
 
             {error &&

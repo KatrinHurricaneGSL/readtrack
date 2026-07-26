@@ -8,7 +8,7 @@ import { statuses } from './data/bookStatuses'
 import useBookFilters from './hooks/useBookFilters'
 
 function App() {
-  const { books, changeStatus, addBook, removeBook } = useBooks()
+  const { books, changeStatus, addBook, removeBook, loading } = useBooks()
 
   const {
     searchQuery,
@@ -51,7 +51,7 @@ function App() {
 
           <BookStats books={books} />
 
-          <AddBookForm addBook={addBook} />
+          <AddBookForm addBook={addBook} loading={loading} />
 
           <label htmlFor="status-filter">Статус:</label>
           <select
@@ -78,9 +78,12 @@ function App() {
             <option value="desc">Сначала новые</option>
           </select>
 
+          {loading && <div>Загрузка...</div>}
+
           <BookList
             books={visibleBooks}
             statuses={statuses}
+            loading={loading}
             changeStatus={changeStatus}
             removeBook={removeBook}
           />

@@ -1,65 +1,82 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect, } from "react"
 import type { Book, BookStatus } from "../types/book"
-import { initialBooks } from "../data/books"
+import { createBook, deleteBook, getBooks, updateStatus, } from "../services/bookService"
 
 interface UseBooksReturn {
     books: Book[];
     addBook: (book: Book) => void;
     removeBook: (id: string) => void;
     changeStatus: (id: string, newStatus: BookStatus) => void;
+    loading: boolean;
 }
 
 function useBooks(): UseBooksReturn {
-    const [books, setBooks] = useState<Book[]>(() => {
-        const savedBooks = localStorage.getItem("books")
-
-        if (savedBooks) {
-            try {
-                const parsedBooks = JSON.parse(savedBooks);
-                if (Array.isArray(parsedBooks)) {
-                    return parsedBooks as Book[]
-                }
-            } catch {
-                console.error("Не удалось загрузить книги из localStorage")
-            }
-        }
-
-        return initialBooks
-    })
+    const [books, setBooks] = useState<Book[]>([])
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem(
-            "books",
-            JSON.stringify(books)
-        )
-    }, [books])
+        fetchBooks()
+    }, [])
 
-    const changeStatus = (
+    const fetchBooks = async () => {
+        setLoading(true)
+        const result = await getBooks()
+
+        setBooks(result)
+        setLoading(false)
+    }
+
+    const changeStatus = async (
         id: string,
         newStatus: BookStatus
-    ): void => {
-        setBooks((prevBooks) =>
-            prevBooks.map((book) => {
-                if (book.id === id) {
-                    return {
-                        ...book,
-                        status: newStatus,
+    ) => {
+        try {
+            setLoading(true)
+            await updateStatus(id, newStatus)
+
+            setBooks((prevBooks) =>
+                prevBooks.map((book) => {
+                    if (book.id === id) {
+                        return {
+                            ...book,
+                            status: newStatus,
+                        }
                     }
-                }
 
-                return book
-            })
-        )
+                    return book
+                })
+            )
+        } catch {
+            alert("Не удалось обновить статус")
+        } finally {
+            setLoading(false)
+        }
     }
 
-    const addBook = (book: Book): void => {
-        setBooks((prevBooks) => [...prevBooks, book])
+    const addBook = async (book: Book) => {
+        try {
+            setLoading(true)
+            await createBook(book)
+
+            fetchBooks()
+        } catch {
+            alert("Не удалось добавить книгу")
+        } finally {
+            setLoading(false)
+        }
     }
 
-    const removeBook = (id: string): void => {
-        setBooks((prevBooks) =>
-            prevBooks.filter((book) => book.id !== id)
-        )
+    const removeBook = async (id: string) => {
+        try {
+            setLoading(true)
+            await deleteBook(id)
+
+            fetchBooks()
+        } catch {
+            alert("Не удалось добавить книгу")
+        } finally {
+            setLoading(false)
+        }
     }
 
     return {
@@ -67,6 +84,7 @@ function useBooks(): UseBooksReturn {
         addBook,
         removeBook,
         changeStatus,
+        loading
     }
 }
 
