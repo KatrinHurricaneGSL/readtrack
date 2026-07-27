@@ -11,6 +11,7 @@ import { useState } from 'react'
 import { ContentBlock } from './components/ContentBlock'
 import { BookFilters } from './components/BookFilters'
 import { useFavorites } from './hooks/useFavorites'
+import { EmptyState } from './components/EmptyState'
 
 function App() {
   const { books, changeStatus, addBook, removeBook, loading } = useBooks()
@@ -74,26 +75,36 @@ function App() {
               sortOrder={sortOrder}
               showFavoritesOnly={showFavoritesOnly}
               onSelectStatus={setSelectedStatus}
-              onSortOrder={setSortOrder} 
+              onSortOrder={setSortOrder}
               onToggleFavoritesOnly={setShowFavoritesOnly}
             />
 
             {loading && <div>Загрузка...</div>}
 
-            <BookList
-              books={visibleBooks}
-              statuses={statuses}
-              loading={loading}
-              changeStatus={changeStatus}
-              removeBook={removeBook}
-              isFavorite={isFavorite}
-              toggleFavorite={toggleFavorite}
-            />
+            {visibleBooks.length > 0
+              ? (
+                <BookList
+                  books={visibleBooks}
+                  statuses={statuses}
+                  loading={loading}
+                  changeStatus={changeStatus}
+                  removeBook={removeBook}
+                  isFavorite={isFavorite}
+                  toggleFavorite={toggleFavorite}
+                />
+              )
+              : (
+                <EmptyState 
+                  description='Попробуйте изменить фильтры'
+                />
+              )
+
+            }
           </ContentBlock>
         </section>
       </main>
       <footer>
-        <p className="footer-info">ReadTrack - трекер прочитанных книг</p>
+        <p className="footer-info">ReadTrack — трекер прочитанных книг</p>
       </footer>
 
       <Modal title="Добавить книгу" open={open} onClose={() => setOpen(false)}>
