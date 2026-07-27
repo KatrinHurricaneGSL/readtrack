@@ -8,6 +8,8 @@ interface BookListProps {
     loading?: boolean;
     changeStatus: (id: string, newStatus: BookStatus) => void;
     removeBook: (id: string) => void;
+    isFavorite: (id: string) => boolean;
+    toggleFavorite: (id: string) => void;
 }
 
 function BookList({ 
@@ -16,6 +18,8 @@ function BookList({
     loading,
     changeStatus,
     removeBook,
+    isFavorite,
+    toggleFavorite,
 }: BookListProps) {
     return (
         <ul className={styles.list}>
@@ -27,6 +31,8 @@ function BookList({
                         loading={loading}
                         changeStatus={changeStatus}
                         removeBook={removeBook}
+                        isFavorite={isFavorite}
+                        toggleFavorite={toggleFavorite}
                     />
                 </li>
             ))}

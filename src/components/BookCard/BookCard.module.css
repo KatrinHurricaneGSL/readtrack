@@ -28,9 +28,29 @@
   flex: 1;
 }
 
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .title {
   margin: 0;
   font-size: 20px;
+}
+
+.favorite {
+  padding: 4px;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  line-height: 1;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.active {
+  color: #f59e0b;
 }
 
 .author {

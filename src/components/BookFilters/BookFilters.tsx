@@ -5,11 +5,13 @@ import styles from "./BookFilters.module.css"
 interface Props {
     status: StatusFilter;
     sortOrder: SortOrder;
+    showFavoritesOnly: boolean;
     onSelectStatus?: (value: StatusFilter) => void;
     onSortOrder?: (value: SortOrder) => void;
+    onToggleFavoritesOnly: (value: boolean) => void;
 }
 
-export function BookFilters({ status, sortOrder, onSelectStatus, onSortOrder }: Props) {
+export function BookFilters({ status, sortOrder, showFavoritesOnly, onSelectStatus, onSortOrder, onToggleFavoritesOnly }: Props) {
 
     return (
         <div className={styles.filters}>
@@ -42,6 +44,20 @@ export function BookFilters({ status, sortOrder, onSelectStatus, onSortOrder }: 
                 </select>
             </div>
 
+            <div className={styles.checkbox}>
+                <input
+                    id="favorites-filter"
+                    type='checkbox'
+                    checked={showFavoritesOnly}
+                    onChange={(event) => {
+                        onToggleFavoritesOnly(event.target.checked)
+                    }}
+                />
+
+                <label htmlFor='favorites-filter'>
+                    Только избранное
+                </label>
+            </div>
         </div>
     )
 }

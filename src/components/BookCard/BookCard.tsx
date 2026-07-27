@@ -8,6 +8,8 @@ interface BookCardProps {
     loading?: boolean;
     changeStatus: (id: string, newStatus: BookStatus) => void;
     removeBook: (id: string) => void;
+    isFavorite: (id: string) => boolean;
+    toggleFavorite: (id: string) => void;
 }
 
 function BookCard({
@@ -15,7 +17,9 @@ function BookCard({
     statuses,
     loading,
     changeStatus,
-    removeBook
+    removeBook,
+    isFavorite,
+    toggleFavorite,
 }: BookCardProps) {
     return (
         <article className={styles.card}>
@@ -27,7 +31,19 @@ function BookCard({
                 />
 
                 <div className={styles.info}>
-                    <h3 className={styles.title}>{book.title}</h3>
+                    <div className={styles.titleRow}>
+                        <h3 className={styles.title}>{book.title}</h3>
+
+                        <button
+                            className={`${styles.favorite} ${isFavorite(book.id) ? styles.active : ""}`}
+                            type="button"
+                            onClick={() => toggleFavorite(book.id)}
+                            disabled={loading}
+                        >
+                            {isFavorite(book.id) ? "★" : "☆"}
+                        </button>
+                    </div>
+
                     <p className={styles.author}>{book.author}</p>
                     <p className={styles.year}>{book.year}</p>
                 </div>

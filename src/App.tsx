@@ -10,9 +10,13 @@ import { Modal } from './components/Modal'
 import { useState } from 'react'
 import { ContentBlock } from './components/ContentBlock'
 import { BookFilters } from './components/BookFilters'
+import { useFavorites } from './hooks/useFavorites'
 
 function App() {
   const { books, changeStatus, addBook, removeBook, loading } = useBooks()
+
+  const { isFavorite, toggleFavorite } = useFavorites()
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
 
   const {
     searchQuery,
@@ -22,7 +26,7 @@ function App() {
     selectedStatus,
     setSelectedStatus,
     visibleBooks
-  } = useBookFilters(books)
+  } = useBookFilters(books, showFavoritesOnly, isFavorite)
 
   const [open, setOpen] = useState(false);
 
@@ -68,8 +72,11 @@ function App() {
             <BookFilters
               status={selectedStatus}
               sortOrder={sortOrder}
+              showFavoritesOnly={showFavoritesOnly}
               onSelectStatus={setSelectedStatus}
-              onSortOrder={setSortOrder} />
+              onSortOrder={setSortOrder} 
+              onToggleFavoritesOnly={setShowFavoritesOnly}
+            />
 
             {loading && <div>Загрузка...</div>}
 
@@ -79,6 +86,8 @@ function App() {
               loading={loading}
               changeStatus={changeStatus}
               removeBook={removeBook}
+              isFavorite={isFavorite}
+              toggleFavorite={toggleFavorite}
             />
           </ContentBlock>
         </section>
