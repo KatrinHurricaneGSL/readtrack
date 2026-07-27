@@ -39,8 +39,10 @@ export function BookFilters({ status, sortOrder, showFavoritesOnly, onSelectStat
                     onChange={(event) => onSortOrder?.(event.target.value as SortOrder)}
                 >
                     <option value="default">Без сортировки</option>
-                    <option value="asc">Сначала старые</option>
-                    <option value="desc">Сначала новые</option>
+                    <option value="title-asc">По названию (А-Я)</option>
+                    <option value="title-desc">По названию (Я-А)</option>
+                    <option value="year-asc">По году (сначала старые)</option>
+                    <option value="year-desc">По году (сначала новые)</option>
                 </select>
             </div>
 

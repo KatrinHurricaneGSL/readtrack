@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "Мастер и Маргарита",
-      "author": "Михаил Булгаков",
+      "author": "Михаил Афанасьевич Булгаков",
       "year": 1967,
       "status": "Прочитано",
       "image": "https://placehold.co/120x180?text=Book"
@@ -11,7 +11,7 @@
     {
       "id": "2",
       "title": "Преступление и наказание",
-      "author": "Фёдор Достоевский",
+      "author": "Фёдор Михайлович Достоевский",
       "year": 1866,
       "status": "Читаю",
       "image": "https://placehold.co/120x180?text=Book"
@@ -19,9 +19,73 @@
     {
       "id": "3",
       "title": "Герой нашего времени",
-      "author": "Михаил Лермонтов",
+      "author": "Михаил Юрьевич Лермонтов",
       "year": 1840,
       "status": "Читаю",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "4",
+      "title": "Война и мир",
+      "author": "Лев Николаевич Толстой",
+      "year": 1869,
+      "status": "В планах",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "5",
+      "title": "Анна Каренина",
+      "author": "Лев Николаевич Толстой",
+      "year": 1878,
+      "status": "Прочитано",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "6",
+      "title": "Евгений Онегин",
+      "author": "Александр Сергеевич Пушкин",
+      "year": 1833,
+      "status": "Прочитано",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "7",
+      "title": "Отцы и дети",
+      "author": "Иван Сергеевич Тургенев",
+      "year": 1862,
+      "status": "Читаю",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "8",
+      "title": "Мёртвые души",
+      "author": "Николай Васильевич Гоголь",
+      "year": 1842,
+      "status": "В планах",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "9",
+      "title": "Ревизор",
+      "author": "Николай Васильевич Гоголь",
+      "year": 1836,
+      "status": "Прочитано",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "10",
+      "title": "Чайка",
+      "author": "Антон Павлович Чехов",
+      "year": 1896,
+      "status": "В планах",
+      "image": "https://placehold.co/120x180?text=Book"
+    },
+    {
+      "id": "TA0JyUnpKGQ",
+      "title": "Идиот",
+      "author": "Фёдор Михайлович Достоевский",
+      "year": 1869,
+      "status": "В планах",
       "image": "https://placehold.co/120x180?text=Book"
     }
   ],

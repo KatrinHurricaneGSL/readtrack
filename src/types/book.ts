@@ -1,14 +1,16 @@
 export type BookStatus =
-    |"В планах"
+    | "В планах"
     | "Читаю"
-    | "Прочитано" 
+    | "Прочитано"
 
 export type StatusFilter = "all" | BookStatus
 
-export type SortOrder =  
+export type SortOrder =
     | "default"
-    | "asc"
-    | "desc"
+    | "title-asc"
+    | "title-desc"
+    | "year-asc"
+    | "year-desc"
 
 export interface Book {
     id: string;

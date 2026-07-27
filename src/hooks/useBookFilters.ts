@@ -25,11 +25,24 @@ function useBookFilters(
 
     const visibleBooks = sortOrder === "default" ? filteredBooks
         : [...filteredBooks].sort((a, b) => {
-            if (sortOrder === "asc") {
+            if (sortOrder === "title-asc") {
+                return a.title.localeCompare(b.title)
+            }
+
+            if (sortOrder === "title-desc") {
+                return b.title.localeCompare(a.title)
+            }
+            
+            if (sortOrder === "year-asc") {
                 return a.year - b.year
             }
 
-            return b.year - a.year
+            
+            if (sortOrder === "year-desc") {
+                return b.year - a.year
+            }
+
+            return 0
         })
 
 
