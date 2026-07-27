@@ -45,7 +45,6 @@ function useBookFilters(
             return 0
         })
 
-
     return {
         searchQuery,
         setSearchQuery,

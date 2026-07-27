@@ -104,7 +104,7 @@ function App() {
         </section>
       </main>
       <footer>
-        <p className="footer-info">ReadTrack — трекер прочитанных книг</p>
+        <p className="footer-info">ReadTrack — трекер домашней библиотеки</p>
       </footer>
 
       <Modal title="Добавить книгу" open={open} onClose={() => setOpen(false)}>
