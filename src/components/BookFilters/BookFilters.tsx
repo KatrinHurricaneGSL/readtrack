@@ -16,7 +16,7 @@ export function BookFilters({ status, sortOrder, showFavoritesOnly, onSelectStat
     return (
         <div className={styles.filters}>
             <div className={styles.field}>
-                <label htmlFor="status-filter">Статус</label>
+                <label htmlFor="status-filter">Статус:</label>
                 <select
                     id="status-filter"
                     value={status}
@@ -32,7 +32,7 @@ export function BookFilters({ status, sortOrder, showFavoritesOnly, onSelectStat
             </div>
 
             <div className={styles.field}>
-                <label htmlFor="sort-books">Сортировка</label>
+                <label htmlFor="sort-books">Сортировка:</label>
                 <select
                     id="sort-books"
                     value={sortOrder}

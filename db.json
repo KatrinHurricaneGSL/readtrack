@@ -17,14 +17,6 @@
       "image": "/images/Crime_and_Punishment.jpg"
     },
     {
-      "id": "3",
-      "title": "Герой нашего времени",
-      "author": "Михаил Юрьевич Лермонтов",
-      "year": 1840,
-      "status": "Читаю",
-      "image": "/images/A_Hero_of_Our_Time.jpg"
-    },
-    {
       "id": "4",
       "title": "Война и мир",
       "author": "Лев Николаевич Толстой",

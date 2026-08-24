@@ -86,13 +86,36 @@
   border: 1px solid #d1d5db;
 }
 
+@media (max-width: 800px) {
+  .content {
+    flex-wrap: wrap;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
 @media (max-width: 600px) {
   .content {
     flex-direction: column;
+    align-items: center;
   }
 
   .image {
-    width: 100%;
+    width: 120px;
     height: 180px;
+  }
+
+  .info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
   }
 }
