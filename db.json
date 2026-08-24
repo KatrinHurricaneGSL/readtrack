@@ -6,7 +6,7 @@
       "author": "Михаил Афанасьевич Булгаков",
       "year": 1967,
       "status": "Прочитано",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/The_Master_and_Margarita.jpg"
     },
     {
       "id": "2",
@@ -14,7 +14,7 @@
       "author": "Фёдор Михайлович Достоевский",
       "year": 1866,
       "status": "Читаю",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/Crime_and_Punishment.jpg"
     },
     {
       "id": "3",
@@ -22,7 +22,7 @@
       "author": "Михаил Юрьевич Лермонтов",
       "year": 1840,
       "status": "Читаю",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/A_Hero_of_Our_Time.jpg"
     },
     {
       "id": "4",
@@ -30,7 +30,7 @@
       "author": "Лев Николаевич Толстой",
       "year": 1869,
       "status": "В планах",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/War_and_Peace.jpg"
     },
     {
       "id": "5",
@@ -38,7 +38,7 @@
       "author": "Лев Николаевич Толстой",
       "year": 1878,
       "status": "Прочитано",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/Anna_Karenina.jpg"
     },
     {
       "id": "6",
@@ -46,7 +46,7 @@
       "author": "Александр Сергеевич Пушкин",
       "year": 1833,
       "status": "Прочитано",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/Eugene_Onegin.jpg"
     },
     {
       "id": "7",
@@ -54,7 +54,7 @@
       "author": "Иван Сергеевич Тургенев",
       "year": 1862,
       "status": "Читаю",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/Fathers_and_Sons.jpg"
     },
     {
       "id": "8",
@@ -62,7 +62,7 @@
       "author": "Николай Васильевич Гоголь",
       "year": 1842,
       "status": "В планах",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/Dead_Souls.jpg"
     },
     {
       "id": "9",
@@ -70,7 +70,7 @@
       "author": "Николай Васильевич Гоголь",
       "year": 1836,
       "status": "Прочитано",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/The_Government_Inspector.jpg"
     },
     {
       "id": "10",
@@ -78,7 +78,7 @@
       "author": "Антон Павлович Чехов",
       "year": 1896,
       "status": "В планах",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/The_Seagull.jpg"
     },
     {
       "id": "TA0JyUnpKGQ",
@@ -86,7 +86,7 @@
       "author": "Фёдор Михайлович Достоевский",
       "year": 1869,
       "status": "В планах",
-      "image": "https://placehold.co/120x180?text=Book"
+      "image": "/images/The_Idiot.jpg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

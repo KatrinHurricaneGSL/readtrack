@@ -41,8 +41,8 @@ export function BookFilters({ status, sortOrder, showFavoritesOnly, onSelectStat
                     <option value="default">Без сортировки</option>
                     <option value="title-asc">По названию (А-Я)</option>
                     <option value="title-desc">По названию (Я-А)</option>
-                    <option value="year-asc">По году (сначала старые)</option>
-                    <option value="year-desc">По году (сначала новые)</option>
+                    <option value="year-asc">По году издания (сначала старые)</option>
+                    <option value="year-desc">По году издания (сначала новые)</option>
                 </select>
             </div>
 

@@ -42,7 +42,7 @@ function AddBookForm({ addBook, loading }: AddBookFormProps) {
             author: author.trim(),
             year: numYear,
             status: "В планах",
-            image: "https://placehold.co/120x180?text=Book",
+            image: "/images/cover.png",
         })
 
         setTitle("")
