@@ -1,0 +1,41 @@
+.title {
+  margin-top: 0;
+  margin-bottom: 24px;
+  font-size: 32px;
+}
+
+.searchSection,
+.bookSection {
+  margin-bottom: 24px;
+}
+
+.searchSection {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 16px;
+}
+
+.searchBlock,
+.stats {
+  min-width: 0;
+}
+
+.sectionTitle {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .searchSection {
+    grid-template-columns: 1fr;
+  }
+}
