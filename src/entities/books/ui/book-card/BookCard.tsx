@@ -1,3 +1,5 @@
+import { Star } from 'lucide-react';
+
 import { Button } from '@/shared/ui/button';
 
 import type { Book, BookStatus } from '../../model/book';
@@ -38,7 +40,7 @@ export function BookCard({
               onClick={() => toggleFavorite(book.id)}
               disabled={loading}
             >
-              {isFavorite(book.id) ? '★' : '☆'}
+              <Star />
             </button>
           </div>
 

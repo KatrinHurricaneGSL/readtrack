@@ -1,3 +1,6 @@
+import { Library } from 'lucide-react';
+import { Toaster } from 'sonner';
+
 import { LibraryPage } from '@/pages/library-page';
 
 import './styles/index.css';
@@ -6,14 +9,15 @@ function App() {
   return (
     <>
       <header>
-        <a href='/'>ReadTrack</a>
+        <a href='/'>
+          <Library />
+          <span>ReadTrack</span>
+        </a>
       </header>
       <main>
         <LibraryPage />
       </main>
-      <footer>
-        <p className='footer-info'>ReadTrack — трекер домашней библиотеки</p>
-      </footer>
+      <Toaster position='top-center' richColors />
     </>
   );
 }

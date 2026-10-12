@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { X } from 'lucide-react';
 import { useEffect } from 'react';
 
 import { Button } from '@/shared/ui/button';
@@ -29,9 +30,9 @@ export function Modal({ open, children, title, onClose }: Props) {
 
   useEffect(() => {
     if (open) {
-      document.body.classList.add('blocked-overflow');
+      document.body.classList.add(styles.blockedOverflow);
     } else {
-      document.body.classList.remove('blocked-overflow');
+      document.body.classList.remove(styles.blockedOverflow);
     }
   }, [open]);
 
@@ -45,8 +46,8 @@ export function Modal({ open, children, title, onClose }: Props) {
       <div className={styles.body}>
         <div className={styles.header}>
           <div className={styles.title}>{title}</div>
-          <Button size='small' onClick={handleCloseModal} type='text'>
-            х
+          <Button className={styles.button} size='small' onClick={handleCloseModal} type='text'>
+            <X />
           </Button>
         </div>
 

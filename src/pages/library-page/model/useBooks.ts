@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
 
 import type { Book, BookStatus } from '@/entities/books/';
 
@@ -34,7 +35,7 @@ function useBooks(): UseBooksReturn {
         }
       } catch {
         if (active) {
-          alert('Не удалось загрузить книги');
+          toast.error('Не удалось загрузить книги');
         }
       } finally {
         if (active) {
@@ -43,7 +44,7 @@ function useBooks(): UseBooksReturn {
       }
     };
 
-    void loadBooks();
+    loadBooks();
 
     return () => {
       active = false;
@@ -67,8 +68,10 @@ function useBooks(): UseBooksReturn {
           return book;
         }),
       );
+
+      toast.success('Статус книги успешно обновлён');
     } catch {
-      alert('Не удалось обновить статус');
+      toast.error('Не удалось обновить статус');
     } finally {
       setLoading(false);
     }
@@ -78,10 +81,11 @@ function useBooks(): UseBooksReturn {
     try {
       setLoading(true);
       await createBook(book);
-
       await fetchBooks();
+
+      toast.success(`Книга ${book.title} успешно добавлена`);
     } catch {
-      alert('Не удалось добавить книгу');
+      toast.error('Не удалось добавить книгу');
     } finally {
       setLoading(false);
     }
@@ -91,10 +95,11 @@ function useBooks(): UseBooksReturn {
     try {
       setLoading(true);
       await deleteBook(id);
-
       await fetchBooks();
+
+      toast.success('Книга успешно удалена');
     } catch {
-      alert('Не удалось удалить книгу');
+      toast.error('Не удалось удалить книгу');
     } finally {
       setLoading(false);
     }
