@@ -1,59 +1,60 @@
-import { useState } from "react";
-import type { Book, SortOrder, StatusFilter } from "@/entities/books";
+import { useState } from 'react';
 
+import type { Book, SortOrder, StatusFilter } from '@/entities/books';
 
 function useBookFilters(
-    books: Book[],
-    showFavoritesOnly: boolean,
-    isFavorite: (id: string) => void
+  books: Book[],
+  showFavoritesOnly: boolean,
+  isFavorite: (id: string) => void,
 ) {
-    const [searchQuery, setSearchQuery] = useState("")
-    const [sortOrder, setSortOrder] = useState<SortOrder>("default")
-    const [selectedStatus, setSelectedStatus] = useState<StatusFilter>("all")
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState<SortOrder>('default');
+  const [selectedStatus, setSelectedStatus] = useState<StatusFilter>('all');
 
-    const filteredBooks = books.filter((book) => {
-        const isSearchMatch = book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            book.author.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredBooks = books.filter((book) => {
+    const isSearchMatch =
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase());
 
-        const isStatusMatch = selectedStatus === "all" ||
-            book.status === selectedStatus
+    const isStatusMatch = selectedStatus === 'all' || book.status === selectedStatus;
 
-        const isFavoriteMatch = !showFavoritesOnly || isFavorite(book.id)
+    const isFavoriteMatch = !showFavoritesOnly || isFavorite(book.id);
 
-        return isSearchMatch && isStatusMatch && isFavoriteMatch
-    })
+    return isSearchMatch && isStatusMatch && isFavoriteMatch;
+  });
 
-    const visibleBooks = sortOrder === "default" ? filteredBooks
-        : [...filteredBooks].sort((a, b) => {
-            if (sortOrder === "title-asc") {
-                return a.title.localeCompare(b.title)
-            }
+  const visibleBooks =
+    sortOrder === 'default'
+      ? filteredBooks
+      : [...filteredBooks].sort((a, b) => {
+          if (sortOrder === 'title-asc') {
+            return a.title.localeCompare(b.title);
+          }
 
-            if (sortOrder === "title-desc") {
-                return b.title.localeCompare(a.title)
-            }
+          if (sortOrder === 'title-desc') {
+            return b.title.localeCompare(a.title);
+          }
 
-            if (sortOrder === "year-asc") {
-                return a.year - b.year
-            }
+          if (sortOrder === 'year-asc') {
+            return a.year - b.year;
+          }
 
+          if (sortOrder === 'year-desc') {
+            return b.year - a.year;
+          }
 
-            if (sortOrder === "year-desc") {
-                return b.year - a.year
-            }
+          return 0;
+        });
 
-            return 0
-        })
-
-    return {
-        searchQuery,
-        setSearchQuery,
-        sortOrder,
-        setSortOrder,
-        selectedStatus,
-        setSelectedStatus,
-        visibleBooks
-    }
+  return {
+    searchQuery,
+    setSearchQuery,
+    sortOrder,
+    setSortOrder,
+    selectedStatus,
+    setSelectedStatus,
+    visibleBooks,
+  };
 }
 
-export default useBookFilters
+export default useBookFilters;

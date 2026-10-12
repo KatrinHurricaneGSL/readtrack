@@ -1,8 +1,8 @@
-import base from "axios";
+import base from 'axios';
 
 export const axios = base.create({
-  baseURL: "http://localhost:3000",
+  baseURL: 'http://localhost:3000',
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 });

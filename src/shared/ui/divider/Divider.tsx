@@ -1,7 +1,5 @@
-import styles from "./Divider.module.css"
+import styles from './Divider.module.css';
 
-export function Divider () {
-    return(
-        <div className={styles.divider}/>
-    )
+export function Divider() {
+  return <div className={styles.divider} />;
 }

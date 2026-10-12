@@ -1,25 +1,22 @@
-import type { Book, BookStatus } from "@/entities/books"
-import { axios } from "@/shared/api"
+import type { Book, BookStatus } from '@/entities/books';
 
+import { axios } from '@/shared/api';
 
 export async function getBooks(): Promise<Book[]> {
-    const result = await axios.get("/books")
-    return result.data
+  const result = await axios.get('/books');
+  return result.data;
 }
 
 export async function createBook(book: Book): Promise<void> {
-    await axios.post("/books", book)
+  await axios.post('/books', book);
 }
 
 export async function deleteBook(id: string): Promise<void> {
-    await axios.delete(`/books/${id}`)
+  await axios.delete(`/books/${id}`);
 }
 
-export async function updateStatus(
-    id: string,
-    newStatus: BookStatus
-): Promise<void> {
-    await axios.patch(`/books/${id}`, {
-        status: newStatus,
-    })
+export async function updateStatus(id: string, newStatus: BookStatus): Promise<void> {
+  await axios.patch(`/books/${id}`, {
+    status: newStatus,
+  });
 }

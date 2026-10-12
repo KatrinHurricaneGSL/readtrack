@@ -1,7 +1,3 @@
-import type { BookStatus } from "./book"
+import type { BookStatus } from './book';
 
-export const statuses: BookStatus[] = [
-    "В планах",
-    "Читаю",
-    "Прочитано",
-]
+export const statuses: BookStatus[] = ['В планах', 'Читаю', 'Прочитано'];

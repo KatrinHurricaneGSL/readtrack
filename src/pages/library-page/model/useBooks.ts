@@ -1,91 +1,112 @@
-import { useState, useEffect, } from "react"
-import type { Book, BookStatus } from "@/entities/books/"
-import { createBook, deleteBook, getBooks, updateStatus, } from "../api/bookService"
+import { useEffect, useState } from 'react';
+
+import type { Book, BookStatus } from '@/entities/books/';
+
+import { createBook, deleteBook, getBooks, updateStatus } from '../api/bookService';
 
 interface UseBooksReturn {
-    books: Book[];
-    addBook: (book: Book) => void;
-    removeBook: (id: string) => void;
-    changeStatus: (id: string, newStatus: BookStatus) => void;
-    loading: boolean;
+  books: Book[];
+  addBook: (book: Book) => void;
+  removeBook: (id: string) => void;
+  changeStatus: (id: string, newStatus: BookStatus) => void;
+  loading: boolean;
 }
 
 function useBooks(): UseBooksReturn {
-    const [books, setBooks] = useState<Book[]>([])
-    const [loading, setLoading] = useState(false);
+  const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetchBooks()
-    }, [])
+  const fetchBooks = async () => {
+    const result = await getBooks();
 
-    const fetchBooks = async () => {
-        setLoading(true)
-        const result = await getBooks()
+    setBooks(result);
+  };
 
-        setBooks(result)
-        setLoading(false)
-    }
+  useEffect(() => {
+    let active = true;
 
-    const changeStatus = async (
-        id: string,
-        newStatus: BookStatus
-    ) => {
-        try {
-            setLoading(true)
-            await updateStatus(id, newStatus)
+    const loadBooks = async () => {
+      try {
+        const result = await getBooks();
 
-            setBooks((prevBooks) =>
-                prevBooks.map((book) => {
-                    if (book.id === id) {
-                        return {
-                            ...book,
-                            status: newStatus,
-                        }
-                    }
-
-                    return book
-                })
-            )
-        } catch {
-            alert("Не удалось обновить статус")
-        } finally {
-            setLoading(false)
+        if (active) {
+          setBooks(result);
         }
-    }
-
-    const addBook = async (book: Book) => {
-        try {
-            setLoading(true)
-            await createBook(book)
-
-            fetchBooks()
-        } catch {
-            alert("Не удалось добавить книгу")
-        } finally {
-            setLoading(false)
+      } catch {
+        if (active) {
+          alert('Не удалось загрузить книги');
         }
-    }
-
-    const removeBook = async (id: string) => {
-        try {
-            setLoading(true)
-            await deleteBook(id)
-
-            fetchBooks()
-        } catch {
-            alert("Не удалось добавить книгу")
-        } finally {
-            setLoading(false)
+      } finally {
+        if (active) {
+          setLoading(false);
         }
-    }
+      }
+    };
 
-    return {
-        books,
-        addBook,
-        removeBook,
-        changeStatus,
-        loading
+    void loadBooks();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const changeStatus = async (id: string, newStatus: BookStatus) => {
+    try {
+      setLoading(true);
+      await updateStatus(id, newStatus);
+
+      setBooks((prevBooks) =>
+        prevBooks.map((book) => {
+          if (book.id === id) {
+            return {
+              ...book,
+              status: newStatus,
+            };
+          }
+
+          return book;
+        }),
+      );
+    } catch {
+      alert('Не удалось обновить статус');
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const addBook = async (book: Book) => {
+    try {
+      setLoading(true);
+      await createBook(book);
+
+      await fetchBooks();
+    } catch {
+      alert('Не удалось добавить книгу');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeBook = async (id: string) => {
+    try {
+      setLoading(true);
+      await deleteBook(id);
+
+      await fetchBooks();
+    } catch {
+      alert('Не удалось удалить книгу');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return {
+    books,
+    addBook,
+    removeBook,
+    changeStatus,
+    loading,
+  };
 }
 
-export default useBooks
+export default useBooks;

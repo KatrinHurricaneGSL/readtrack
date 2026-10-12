@@ -1,31 +1,31 @@
 .filters {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .field {
-    display: flex;
-    gap: 12px;
-    align-items: center;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .checkbox {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 @media (max-width: 811px) {
-    .checkbox {
-        flex-basis: 100%;
-    }
+  .checkbox {
+    flex-basis: 100%;
+  }
 }
 
 @media (max-width: 680px) {
-    .field{
-        flex-direction: column;
-        align-items: start;
-    }
+  .field {
+    flex-direction: column;
+    align-items: start;
+  }
 }

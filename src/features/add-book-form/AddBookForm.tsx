@@ -1,105 +1,97 @@
-import { useState } from 'react'
-import type { Book } from "@/entities/books"
-import styles from './AddBookForm.module.css'
-import { Button } from '@/shared/ui/button'
+import { useState } from 'react';
+
+import type { Book } from '@/entities/books';
+
+import { Button } from '@/shared/ui/button';
+
+import styles from './AddBookForm.module.css';
 
 interface AddBookFormProps {
-    addBook: (book: Book) => void;
-    loading?: boolean
+  addBook: (book: Book) => void;
+  loading?: boolean;
 }
 
 function AddBookForm({ addBook, loading }: AddBookFormProps) {
-    const [title, setTitle] = useState("")
-    const [author, setAuthor] = useState("")
-    const [year, setYear] = useState("")
-    const [error, setError] = useState("")
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [year, setYear] = useState('');
+  const [error, setError] = useState('');
 
-    const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
-        event.preventDefault()
+  const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-        setError("")
+    setError('');
 
-        if (!title.trim()) {
-            setError("Введите название книги")
-            return
-        }
-
-        if (!author.trim()) {
-            setError("Введите имя автора")
-            return
-        }
-
-        const numYear = Number(year);
-
-        if (isNaN(numYear) || numYear < 1000 || numYear > 2026) {
-            setError("Введите корректный год")
-            return
-        }
-
-        addBook({
-            id: crypto.randomUUID(),
-            title: title.trim(),
-            author: author.trim(),
-            year: numYear,
-            status: "В планах",
-            image: "/images/cover.png",
-        })
-
-        setTitle("")
-        setAuthor("")
-        setYear("")
+    if (!title.trim()) {
+      setError('Введите название книги');
+      return;
     }
 
-    return (
-        <form
-            className={styles.form}
-            onSubmit={handleSubmit}
-        >
+    if (!author.trim()) {
+      setError('Введите имя автора');
+      return;
+    }
 
-            <label className={styles.field}>
-                Название книги
-                <input
-                    className={styles.input}
-                    type="text"
-                    value={title}
-                    onChange={(event) => setTitle(event.target.value)}
-                />
-            </label>
+    const numYear = Number(year);
 
-            <label className={styles.field}>
-                Имя автора
-                <input
-                    className={styles.input}
-                    type="text"
-                    value={author}
-                    onChange={(event) => setAuthor(event.target.value)}
-                />
-            </label>
+    if (isNaN(numYear) || numYear < 1000 || numYear > 2026) {
+      setError('Введите корректный год');
+      return;
+    }
 
-            <label className={styles.field}>
-                Год издания
-                <input
-                    className={styles.input}
-                    type="number"
-                    value={year}
-                    onChange={(event) => setYear(event.target.value)}
-                />
-            </label>
+    addBook({
+      id: crypto.randomUUID(),
+      title: title.trim(),
+      author: author.trim(),
+      year: numYear,
+      status: 'В планах',
+      image: '/images/cover.png',
+    });
 
-            {error &&
-                <p className={styles.error}>
-                    {error}
-                </p>
-            }
+    setTitle('');
+    setAuthor('');
+    setYear('');
+  };
 
-            <Button
-                htmlType="submit"
-                disabled={loading}
-            >
-                {loading ? "Загрузка..." : "Добавить"}
-            </Button>
-        </form>
-    )
+  return (
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <label className={styles.field}>
+        Название книги
+        <input
+          className={styles.input}
+          type='text'
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+      </label>
+
+      <label className={styles.field}>
+        Имя автора
+        <input
+          className={styles.input}
+          type='text'
+          value={author}
+          onChange={(event) => setAuthor(event.target.value)}
+        />
+      </label>
+
+      <label className={styles.field}>
+        Год издания
+        <input
+          className={styles.input}
+          type='number'
+          value={year}
+          onChange={(event) => setYear(event.target.value)}
+        />
+      </label>
+
+      {error && <p className={styles.error}>{error}</p>}
+
+      <Button htmlType='submit' disabled={loading}>
+        {loading ? 'Загрузка...' : 'Добавить'}
+      </Button>
+    </form>
+  );
 }
 
-export default AddBookForm
+export default AddBookForm;
