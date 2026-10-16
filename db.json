@@ -13,7 +13,7 @@
       "title": "Преступление и наказание",
       "author": "Фёдор Михайлович Достоевский",
       "year": 1866,
-      "status": "Читаю",
+      "status": "Прочитано",
       "image": "/images/Crime_and_Punishment.jpg"
     },
     {
@@ -77,7 +77,7 @@
       "title": "Идиот",
       "author": "Фёдор Михайлович Достоевский",
       "year": 1869,
-      "status": "Прочитано",
+      "status": "В планах",
       "image": "/images/The_Idiot.jpg"
     }
   ],
